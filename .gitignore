@@ -1,0 +1,24 @@
+# Node modules (both frontend & backend)
+**/node_modules
+
+# Environment variables (secrets)
+**/.env
+
+# Angular build output
+**/dist
+**/.angular
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Mac system files
+.DS_Store
+
+# VS Code settings
+.vscode
+
+# Temporary files
+*.tmp
+*.log

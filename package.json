@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@apollo/client": "^4.1.6",
+    "apollo-angular": "^13.0.0",
+    "bootstrap": "^5.3.8",
+    "graphql": "^16.13.2",
+    "jwt-decode": "^4.0.0"
+  },
+  "devDependencies": {
+    "@angular/cli": "^21.2.5"
+  }
+}
