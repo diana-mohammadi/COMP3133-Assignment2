@@ -21,26 +21,37 @@ export class EmployeeDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id') || '';
-    console.log('Route id:', id);
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id') || '';
+      console.log('Route id:', id);
 
-    if (!id) {
-      this.loading = false;
-      this.errorMessage = 'No employee id found.';
-      return;
-    }
-
-    this.employeeService.getEmployee(id).subscribe({
-      next: (res: any) => {
-        console.log('getEmployee response:', res);
-        this.employee = res.data.getEmployee;
+      if (!id) {
         this.loading = false;
-      },
-      error: (err) => {
-        console.error('getEmployee error:', err);
-        this.loading = false;
-        this.errorMessage = 'Failed to load employee details.';
+        this.errorMessage = 'No employee id found.';
+        return;
       }
+
+      this.loading = true;
+      this.errorMessage = '';
+
+      this.employeeService.getEmployee(id).subscribe({
+        next: (res: any) => {
+          console.log('getEmployee response:', res);
+
+          this.employee = res?.data?.getEmployee || null;
+
+          if (!this.employee) {
+            this.errorMessage = 'Employee not found.';
+          }
+
+          this.loading = false;
+        },
+        error: (err) => {
+          console.error('getEmployee error:', err);
+          this.loading = false;
+          this.errorMessage = 'Failed to load employee details.';
+        }
+      });
     });
   }
 }
