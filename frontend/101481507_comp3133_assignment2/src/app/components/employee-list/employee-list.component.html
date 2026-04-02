@@ -1,0 +1,61 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Employees List</h2>
+    <a routerLink="/add" class="btn btn-success">Add Employee</a>
+  </div>
+
+  <div class="card p-3 mb-4 shadow-sm">
+    <div class="row g-2">
+      <div class="col-md-5">
+        <input [(ngModel)]="department" class="form-control" placeholder="Search by Department">
+      </div>
+      <div class="col-md-5">
+        <input [(ngModel)]="position" class="form-control" placeholder="Search by Position">
+      </div>
+      <div class="col-md-2 d-grid">
+        <button class="btn btn-primary" (click)="searchEmployees()">Search</button>
+      </div>
+    </div>
+    <div class="mt-2">
+      <button class="btn btn-secondary btn-sm" (click)="loadEmployees()">Reset</button>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped shadow-sm">
+      <thead class="table-dark">
+        <tr>
+          <th>Picture</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Department</th>
+          <th>Position</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of employees" appHighlight>
+          <td>
+            <img
+              [src]="emp.profilePicture || 'https://via.placeholder.com/60'"
+              width="60"
+              height="60"
+              class="rounded-circle object-fit-cover"
+            >
+          </td>
+          <td>{{ emp.firstName }}</td>
+          <td>{{ emp.lastName }}</td>
+          <td>{{ emp.email }}</td>
+          <td>{{ emp.department }}</td>
+          <td>{{ emp.position }}</td>
+          <td>
+            <a [routerLink]="['/employee', emp.id]" class="btn btn-info btn-sm me-1">View</a>
+            <a [routerLink]="['/edit', emp.id]" class="btn btn-warning btn-sm me-1">Update</a>
+            <button class="btn btn-danger btn-sm" (click)="deleteEmployee(emp.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

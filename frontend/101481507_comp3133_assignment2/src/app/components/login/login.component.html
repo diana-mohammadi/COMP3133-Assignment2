@@ -1,0 +1,26 @@
+<div class="container mt-5">
+  <div class="card shadow p-4 mx-auto login-card">
+    <h2 class="text-center mb-4">Login</h2>
+
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input [(ngModel)]="email" type="email" class="form-control" placeholder="Enter email">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Password</label>
+      <input [(ngModel)]="password" type="password" class="form-control" placeholder="Enter password">
+    </div>
+
+    <div class="text-danger mb-3" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+    <button class="btn btn-primary w-100" (click)="login()">Login</button>
+
+    <p class="mt-3 text-center">
+      Don’t have an account?
+      <a routerLink="/signup">Signup</a>
+    </p>
+  </div>
+</div>
