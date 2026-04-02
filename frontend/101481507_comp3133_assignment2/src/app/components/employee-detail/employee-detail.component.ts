@@ -36,15 +36,12 @@ export class EmployeeDetailComponent implements OnInit {
 
       this.employeeService.getEmployee(id).subscribe({
         next: (res: any) => {
-          console.log('getEmployee response:', res);
-
+          console.log('raw res:', res);
           this.employee = res?.data?.getEmployee || null;
-
+          this.loading = false;
           if (!this.employee) {
             this.errorMessage = 'Employee not found.';
           }
-
-          this.loading = false;
         },
         error: (err) => {
           console.error('getEmployee error:', err);
